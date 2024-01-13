@@ -6,13 +6,21 @@ namespace CalendarApp.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private string _title = "Prism Application";
+        private string _title = "My calendar app";
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
 
+        public MainWindowViewModel()
+        {
+            CurrentTheme = "LightTheme";
+
+            ToggleThemeCommand = new DelegateCommand(ToggleTheme);
+        }
+
+        #region Theme Handling
         private string currentTheme;
         public string CurrentTheme
         {
@@ -20,15 +28,21 @@ namespace CalendarApp.ViewModels
             set { SetProperty(ref currentTheme, value); }
         }
 
-        public DelegateCommand ToggleLightThemeCommand { get; set; }
-        public DelegateCommand ToggleDarkThemeCommand { get; set; }
+        private bool isLightTheme=true;
+        public DelegateCommand ToggleThemeCommand { get; set; }
 
-        public MainWindowViewModel()
+        private void ToggleTheme()
         {
-            CurrentTheme = "LightTheme";
-
-            ToggleLightThemeCommand = new DelegateCommand(ToggleLightTheme);
-            ToggleDarkThemeCommand = new DelegateCommand(ToggleDarkTheme);
+            if (isLightTheme)
+            {
+                ToggleDarkTheme();
+                isLightTheme = false;
+            }
+            else
+            {
+                ToggleLightTheme();
+                isLightTheme = true;
+            }
         }
 
         private void ToggleLightTheme()
@@ -39,5 +53,6 @@ namespace CalendarApp.ViewModels
         {
         ThemesController.SetTheme(ThemesController.ThemeTypes.Dark);
         }
+        #endregion
     }
 }
