@@ -1,6 +1,7 @@
 ﻿using CalendarApp.Themes;
 using Prism.Commands;
 using Prism.Mvvm;
+using System;
 
 namespace CalendarApp.ViewModels
 {
@@ -18,6 +19,8 @@ namespace CalendarApp.ViewModels
             CurrentTheme = "LightTheme";
 
             ToggleThemeCommand = new DelegateCommand(ToggleTheme);
+
+            DisplayDate = DateTime.Now;
         }
 
         #region Theme Handling
@@ -54,5 +57,8 @@ namespace CalendarApp.ViewModels
         ThemesController.SetTheme(ThemesController.ThemeTypes.Dark);
         }
         #endregion
+
+        public DateTime DisplayDate { get; set; }
+
     }
 }
