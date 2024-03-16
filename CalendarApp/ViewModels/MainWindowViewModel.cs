@@ -1,6 +1,7 @@
 ﻿using CalendarApp.Themes;
 using Prism.Commands;
 using Prism.Mvvm;
+using System;
 
 namespace CalendarApp.ViewModels
 {
@@ -18,7 +19,58 @@ namespace CalendarApp.ViewModels
             CurrentTheme = "LightTheme";
 
             ToggleThemeCommand = new DelegateCommand(ToggleTheme);
+
+            DisplayDate = DateTime.Now;
+
+            ToggleSidePanelCommand = new DelegateCommand(TogglePanel);
+            SidePanelWidth = 40;
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(10);
+            timer.Tick += Timer_Tick;
+            isOpening = true;
         }
+
+        #region Side Panel Handling
+        private DispatcherTimer timer;
+        private bool isOpening;
+
+        private void TogglePanel()
+        {
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (isOpening)
+            {
+                sidePanelWidth += 4;
+                if (sidePanelWidth >= 100) // Adjust as needed
+                {
+                    timer.Stop();
+                    isOpening = false;
+                }
+            }
+            else
+            {
+                sidePanelWidth -= 4;
+                if (sidePanelWidth <= 40)
+                {
+                    timer.Stop();
+                    isOpening = true;
+                }
+            }
+            RaisePropertyChanged(nameof(SidePanelWidth));
+        }
+
+        public DelegateCommand ToggleSidePanelCommand { get; set; }
+
+        private double sidePanelWidth;
+        public double SidePanelWidth
+        {
+            get { return sidePanelWidth; }
+            set { SetProperty(ref sidePanelWidth, value); }
+        }
+        #endregion
 
         #region Theme Handling
         private string currentTheme;
@@ -54,5 +106,8 @@ namespace CalendarApp.ViewModels
         ThemesController.SetTheme(ThemesController.ThemeTypes.Dark);
         }
         #endregion
+
+        public DateTime DisplayDate { get; set; }
+
     }
 }
