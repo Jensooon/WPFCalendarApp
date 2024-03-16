@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
+using System.Windows.Threading;
 
 namespace CalendarApp.ViewModels
 {
