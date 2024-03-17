@@ -17,42 +17,58 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <!--Side Menu Toggle Button-->
             <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Command="{Binding ToggleSidePanelCommand}" Style="{DynamicResource MaterialDesignToolButton}" Margin="8,9,0,9" >
                 <materialDesign:PackIcon Kind="Menu"/>
             </Button>
-            
+
             <!--<local:SideMenuUserControl Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
+            <!--Side Menu Content-->
             <Grid Grid.Row="1" Grid.Column="0" Width="{Binding SidePanelWidth}">
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListViewItem Height="50">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Home" Height="20" Width="25"/>
-
-                            <TextBlock FontSize="12" Margin="15, 0, 0, 0" Text="Home"/>
-                        </StackPanel>
+                        <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Width="150" Command="{Binding NavigateMenu}" CommandParameter="HomeView">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Home" Height="20" Width="25" Margin="-16.5,0,0,0"/>
+                                    <TextBlock FontSize="12" Margin="15, 0, 0, 0" Text="Home"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
                     </ListViewItem>                   
                     <ListViewItem Height="50">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Calendar" Height="20" Width="25"/>
-
-                            <TextBlock FontSize="12" Margin="15, 0, 0, 0" Text="Calendar"/>
-                        </StackPanel>
+                        <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Width="150" Command="{Binding NavigateMenu}" CommandParameter="HomeView">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Calendar" Height="20" Width="25" Margin="-16.5,0,0,0"/>
+                                    <TextBlock FontSize="12" Margin="15, 0, 0, 0" Text="Calendar"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
                     </ListViewItem>                    
                     <ListViewItem Height="50">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings" Height="20" Width="25"/>
-
-                            <TextBlock FontSize="12" Margin="15, 0, 0, 0" Text="Settings"/>
-                        </StackPanel>
+                        <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Width="150" Command="{Binding NavigateMenu}" CommandParameter="SettingsView">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Settings" Height="20" Width="25" Margin="-16.5,0,0,0"/>
+                                    <TextBlock FontSize="12" Margin="15, 0, 0, 0" Text="Settings"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
                     </ListViewItem>
                 </ListView>
             </Grid>
-
+            
+            <!--Light and Dark theme toggle button-->
             <ToggleButton Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Command="{Binding ToggleThemeCommand}" Width="50">
                 <materialDesign:PackIcon Kind="ThemeLightDark"/>
             </ToggleButton>
 
+            <!--Calendar-->
             <Calendar Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" DisplayDate="{Binding DisplayDate, Mode=TwoWay}" DisplayMode="Year" />
+
+            <!--Content Region-->
+            <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.Column="1" Grid.Row="1" Margin="10"/>
 
         </Grid>
     </Border>
