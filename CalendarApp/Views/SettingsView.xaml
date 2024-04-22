@@ -3,8 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True"
-             Height="150" Width="150">
-    <Grid Background="Coral">
+             Height="150" Width="150"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <Grid>
 
+        <TextBlock Text="Settings" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="24"/>
+
+        <!-- Checkbox for Option 1 -->
+        <CheckBox Content="Option 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,80,0,0"/>
+
+        <!-- Checkbox for Option 2 -->
+        <CheckBox Content="Option 2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,110,0,0"/>
+
+        <!-- Textbox for Text Setting -->
+        <TextBlock Text="Text Setting:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,150,0,0"/>
+        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="50,170,0,0"/>
+
+        <!-- Button to Save Settings -->
+        <Button Content="Save Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,220,0,0" Width="100"/>
+
+        <!-- Button to Cancel -->
+        <Button Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,220,0,0" Width="100"/>
+
+        <!-- Status Message -->
+        <TextBlock  Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,260,0,0" Foreground="Red"/>
     </Grid>
 </UserControl>

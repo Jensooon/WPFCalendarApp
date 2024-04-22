@@ -9,7 +9,7 @@
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding SidePanelWidth}" MinWidth="40"/>
+                <ColumnDefinition MinWidth="40" Width="8*"/>
                 <ColumnDefinition Width="97*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -35,7 +35,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                    </ListViewItem>                   
+                    </ListViewItem>
                     <ListViewItem Height="50">
                         <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Width="150" Command="{Binding NavigateMenu}" CommandParameter="HomeView">
                             <Button.Content>
@@ -45,7 +45,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                    </ListViewItem>                    
+                    </ListViewItem>
                     <ListViewItem Height="50">
                         <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Width="150" Command="{Binding NavigateMenu}" CommandParameter="SettingsView">
                             <Button.Content>
@@ -58,14 +58,11 @@
                     </ListViewItem>
                 </ListView>
             </Grid>
-            
+
             <!--Light and Dark theme toggle button-->
             <ToggleButton Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Command="{Binding ToggleThemeCommand}" Width="50">
                 <materialDesign:PackIcon Kind="ThemeLightDark"/>
             </ToggleButton>
-
-            <!--Calendar-->
-            <Calendar Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" DisplayDate="{Binding DisplayDate, Mode=TwoWay}" DisplayMode="Year" />
 
             <!--Content Region-->
             <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.Column="1" Grid.Row="1" Margin="10"/>
