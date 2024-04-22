@@ -1,7 +1,9 @@
 ﻿using CalendarApp.Themes;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Threading;
 
 namespace CalendarApp.ViewModels
@@ -15,7 +17,7 @@ namespace CalendarApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IRegionManager regionManager)
         {
             CurrentTheme = "LightTheme";
 
@@ -23,13 +25,29 @@ namespace CalendarApp.ViewModels
 
             DisplayDate = DateTime.Now;
 
+            //Side Menu Panel
             ToggleSidePanelCommand = new DelegateCommand(TogglePanel);
             SidePanelWidth = 40;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(10);
             timer.Tick += Timer_Tick;
             isOpening = true;
+
+            //Navigation
+            m_regionManager = regionManager;
+            NavigateMenu = new DelegateCommand<string>(NavigateToMenu);
+            
         }
+
+        #region Navigation
+        private readonly IRegionManager m_regionManager;
+        public DelegateCommand<string> NavigateMenu { get; private set; }
+
+        private void NavigateToMenu(string viewMenu)
+        {
+            m_regionManager.RequestNavigate("ContentRegion", viewMenu);
+        }
+        #endregion
 
         #region Side Panel Handling
         private DispatcherTimer timer;
