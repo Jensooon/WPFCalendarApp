@@ -63,7 +63,7 @@ namespace CalendarApp.ViewModels
             if (isOpening)
             {
                 sidePanelWidth += 4;
-                if (sidePanelWidth >= 100) // Adjust as needed
+                if (sidePanelWidth >= 110) // Adjust as needed
                 {
                     timer.Stop();
                     isOpening = false;

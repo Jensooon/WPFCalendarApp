@@ -4,7 +4,7 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True"
              Height="150" Width="150">
-    <Grid Background="Aqua">
+    <Grid >
             
     </Grid>
 </UserControl>
