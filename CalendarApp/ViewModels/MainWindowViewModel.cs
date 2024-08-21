@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Threading;
@@ -17,7 +18,19 @@ namespace CalendarApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public MainWindowViewModel(IRegionManager regionManager)
+        private readonly IDialogService dialogService;
+
+        public DelegateCommand ShowSaveAsDialogCommand { get; private set; }
+
+        private void ShowSaveAsDialog()
+        {
+            dialogService.ShowDialog("SaveAsDialog");
+
+            //Add paramaters by using DialogParameters
+            //And then inject into OnDialogOpened method within Dialog view model
+        }
+
+        public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
             CurrentTheme = "LightTheme";
 
@@ -36,7 +49,11 @@ namespace CalendarApp.ViewModels
             //Navigation
             m_regionManager = regionManager;
             NavigateMenu = new DelegateCommand<string>(NavigateToMenu);
-            
+
+
+            ShowSaveAsDialogCommand = new DelegateCommand(ShowSaveAsDialog);
+            this.dialogService = dialogService;
+
         }
 
         #region Navigation

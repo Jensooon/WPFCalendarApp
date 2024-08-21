@@ -63,6 +63,11 @@
             <ToggleButton Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Command="{Binding ToggleThemeCommand}" Width="50">
                 <materialDesign:PackIcon Kind="ThemeLightDark"/>
             </ToggleButton>
+            
+            
+            <!--Light and Dark theme toggle button-->
+            <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  Content="SaveAS" Command="{Binding ShowSaveAsDialogCommand}" Width="50"/>
+
 
             <!--Calendar-->
             <Calendar Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" DisplayDate="{Binding DisplayDate, Mode=TwoWay}" DisplayMode="Year" />

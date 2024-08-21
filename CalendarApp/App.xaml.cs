@@ -4,6 +4,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 using System.Windows;
+using CalendarApp.Dialogs;
 
 namespace CalendarApp
 {
@@ -28,7 +29,7 @@ namespace CalendarApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterDialog<SaveAsDialog, SaveDialogAsViewModel>();
         }
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {

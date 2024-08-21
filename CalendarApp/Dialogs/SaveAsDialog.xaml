@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="CalendarApp.Dialogs.SaveAsDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             Height="200" Width="400">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterOwner" />
+            <Setter Property="ResizeMode" Value="NoResize" />
+            <Setter Property="ShowInTaskbar" Value="False" />
+            <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <Grid Background="Wheat">
+        <Button Content="Cancel" Command="{Binding CancelDialogCommand}"/>
+    </Grid>
+</UserControl>
